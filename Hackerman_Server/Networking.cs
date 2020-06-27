@@ -19,6 +19,9 @@ namespace Hackerman_Server
         private System.Threading.ManualResetEvent allDone = new System.Threading.ManualResetEvent(false);
         private List<UserConnection> allCurrentUsers = new List<UserConnection>();
 
+        // Command Array
+        string[] commandFiles;
+
         public Networking(Configuration config)
         {
             _config = config;
@@ -95,6 +98,11 @@ namespace Hackerman_Server
             {
                 Console.WriteLine(e.ToString());
             }
+
+            // Get list of commands
+            string[] commandFiles = Directory.GetFiles("./commands");
+            foreach (string file in commandFiles)
+                Console.WriteLine(Path.GetFileName(file));
 
             Console.WriteLine("\n Press any key to continue...");
             Console.ReadKey();
