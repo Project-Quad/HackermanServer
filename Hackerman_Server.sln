@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1169
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hackerman_Server", "Hackerman_Server\Hackerman_Server.csproj", "{7BF0C545-56FF-48CE-BB29-A5E2972BE045}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hackerman-SockClient", "Tests\Hackerman-SockClient.csproj", "{1A7C1AE6-957A-4892-8A28-B264A154E8F6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7BF0C545-56FF-48CE-BB29-A5E2972BE045}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BF0C545-56FF-48CE-BB29-A5E2972BE045}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BF0C545-56FF-48CE-BB29-A5E2972BE045}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BF0C545-56FF-48CE-BB29-A5E2972BE045}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A7C1AE6-957A-4892-8A28-B264A154E8F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A7C1AE6-957A-4892-8A28-B264A154E8F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A7C1AE6-957A-4892-8A28-B264A154E8F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A7C1AE6-957A-4892-8A28-B264A154E8F6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {17C37CC6-329F-4B90-9FDF-B2ABB4A92938}
+	EndGlobalSection
+EndGlobal
