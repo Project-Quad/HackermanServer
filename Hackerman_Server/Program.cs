@@ -29,7 +29,7 @@ namespace Hackerman_Server
                 Console.WriteLine($"{com.ID} {com.Name} {com.IP}");
             foreach (var plr in database.Players)
                 Console.WriteLine($"{plr.ID} {plr.Username} {plr.Password} {plr.HomeComp} {plr.Admin}");
-            var net = new Networking(config);
+            var net = new Networking(config, database);
             net.StartServer();
             //database.SaveChanges();
             Console.ReadLine();
