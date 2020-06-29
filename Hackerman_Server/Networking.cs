@@ -7,6 +7,8 @@ using System.Net.Sockets;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Security.Cryptography;
+using Hackerman_Server.DatabaseInterface;
+using Microsoft.Extensions.DependencyInjection;
 
 // Socket Listener acts as a server and listens to the incoming   
 // messages on the specified port and protocol.  
@@ -18,10 +20,16 @@ namespace Hackerman_Server
         private readonly Configuration _config;
         private System.Threading.ManualResetEvent allDone = new System.Threading.ManualResetEvent(false);
         private List<UserConnection> allCurrentUsers = new List<UserConnection>();
+        private CommandHandler _commandHandler;
+        private HackermanContext _database;
+        public static Networking Instance;
 
-        public Networking(Configuration config)
+        public Networking(Configuration config, HackermanContext provider)
         {
             _config = config;
+            _database = provider;
+            _commandHandler = new CommandHandler(_database);
+            Instance = this;
         }
         
         public void StartServer()
@@ -143,7 +151,7 @@ namespace Hackerman_Server
                         }
                     }
                 }
-                ProcessRequest(msg);
+                _commandHandler.ProcessCommand(conn, msg);
                 Console.WriteLine($"Client sent:\n{msg}");
                 conn.Buffer = new byte[20];
                 conn.Sock.BeginReceive(conn.Buffer, 0, conn.Buffer.Length, 0, ReadHeaderCallback,
@@ -155,7 +163,7 @@ namespace Hackerman_Server
         
         #region SEND CALLBACKS
 
-        private void Send(UserConnection conn, string data)
+        public static void Send(UserConnection conn, string data)
         {
             byte[] header = new byte[20];
             conn.Aes.IV.CopyTo(header, 0);
@@ -175,7 +183,7 @@ namespace Hackerman_Server
             header.CopyTo(msgToSend, 0);
             dataBytes.CopyTo(msgToSend, 20);
 
-            conn.Sock.BeginSend(msgToSend, 0, msgToSend.Length, 0, SendCallBack, conn);
+            conn.Sock.BeginSend(msgToSend, 0, msgToSend.Length, 0, Instance.SendCallBack, conn);
         }
 
         private void SendCallBack(IAsyncResult ar)
@@ -197,11 +205,6 @@ namespace Hackerman_Server
         #endregion
         
         #endregion
-
-        private void ProcessRequest(string msg)
-        {
-            
-        }
         
         private UserConnection ProcessClient(Socket s)
         {
