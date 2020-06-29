@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using Hackerman_Server.Commands;
 using Hackerman_Server.DatabaseInterface;
-using Microsoft.Extensions.DependencyInjection;
 using static Hackerman_Server.Networking;
 
 namespace Hackerman_Server
@@ -21,6 +20,8 @@ namespace Hackerman_Server
         {
             string[] commandArgs = command.Split(' ');
             string returnMsg = _commandList[commandArgs[0]].DoCommand(commandArgs);
+
+            Send(conn, returnMsg);
         }
     }
 }

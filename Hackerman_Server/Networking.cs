@@ -163,7 +163,7 @@ namespace Hackerman_Server
         
         #region SEND CALLBACKS
 
-        private static void Send(UserConnection conn, string data)
+        public static void Send(UserConnection conn, string data)
         {
             byte[] header = new byte[20];
             conn.Aes.IV.CopyTo(header, 0);
